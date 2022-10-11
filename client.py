@@ -1,0 +1,21 @@
+import socket
+server=socket.gethostname()
+port=5000
+client=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+client.connect((server,port))
+print("Enter the name:")
+name=input()
+client.send(str(name).encode('utf8'))
+print("\nAdult:1000/ticket\nChild:350/ticket")
+print("\nEnter no of  adults:")
+adult=input()
+client.send(str(adult).encode('utf8'))
+print("\nEnter no of childrens:")
+child=input()
+client.send(str(child).encode('utf8'))
+data1=client.recv(1024)
+print("Total Ticket( in no) :",data1.decode())
+data=client.recv(1024)
+print("\n")
+print("Total Amount : Rs",data.decode())
+
